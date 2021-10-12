@@ -1,5 +1,6 @@
 import tensorflow as tf
 import time
+import os
 
 def create_model(LOSS_FUNCTION,OPTIMIZER,METRICS,NUM_CLASSES):
     LAYERS=[
