@@ -1,4 +1,5 @@
 import tensorflow as tf
+import logging
 
 
 def get_data(validation_datasize):
@@ -12,5 +13,5 @@ def get_data(validation_datasize):
 
     # scale the test set as well
     X_test = X_test / 255.
-    
+    logging.info("loaded mnist data set and splitted to train and test split")
     return (X_train, y_train), (X_valid, y_valid), (X_test, y_test)

@@ -5,14 +5,11 @@ import logging
 from src.utils.common import read_config
 import argparse
 def training(config_path):
+    config=read_config(config_path)
     logging_str = "[%(asctime)s: %(levelname)s: %(module)s] %(message)s"
-    log_dir = "logs"
+    log_dir = config["logs"]["logs_dir"]
     os.makedirs(log_dir, exist_ok=True)
     logging.basicConfig(filename= os.path.join(log_dir,"running_logs.log"),level=logging.INFO, format=logging_str, filemode="a")
-
-
-
-    config=read_config(config_path)
     validation_datasize = config["params"]["validation_datasize"]
     (X_train, y_train), (X_valid, y_valid), (X_test, y_test) = get_data(validation_datasize)
     LOSS_FUNCTION= config["params"]["loss_function"]
