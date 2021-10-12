@@ -28,6 +28,10 @@ def training(config_path):
     logging.info(f"weights and biases: {weights.shape, biases.shape}")
     EPOCHS=config["params"]["epochs"]
     VALIDATION_SET=(X_valid, y_valid)
+    logging.info(f"X_valid shape: {X_valid.shape}")
+    logging.info(f"y_valid shape: {y_valid.shape}")
+    logging.info(f"X_train shape: {X_train.shape}")
+    logging.info(f"y_train shape: {y_train.shape}")
     history=model.fit(X_train, y_train,epochs=EPOCHS, validation_data=VALIDATION_SET)
 
     model_name=config["artifacts"]["model_name"]
