@@ -1,5 +1,5 @@
 params:
-  epochs: 30
+  epochs: 10
   batch_size: 32
   num_classes: 10
   metrics: accuracy
@@ -13,6 +13,7 @@ artifacts:
   model_dir: model
   plots_dir: plots
   checkpoints_dir: checkpoints
+  model_name: model.h5
   
 logs:
   logs_dir: log_dir
