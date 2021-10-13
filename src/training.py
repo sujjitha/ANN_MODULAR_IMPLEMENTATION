@@ -1,9 +1,11 @@
 import os
 from src.utils.data_mgmt import get_data
-from src.utils.model import create_model, save_model, save_plot
+from src.utils.model import create_model, save_model, save_model_history
 import logging
 from src.utils.common import read_config
 import argparse
+import pandas as pd
+
 def training(config_path):
     config=read_config(config_path)
     logging_str = "[%(asctime)s: %(levelname)s: %(module)s] %(message)s"
@@ -39,6 +41,8 @@ def training(config_path):
     os.makedirs(model_dir_path, exist_ok=True)
 
     save_model(model, model_name, model_dir_path)
+    plot_path=config["artifacts"]["plots_dir"]
+    save_model_history(pd.DataFrame(history.history),plot_path,"model_history.png")
     
     
 

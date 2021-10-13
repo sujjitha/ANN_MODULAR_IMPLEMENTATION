@@ -14,5 +14,7 @@ def get_data(validation_datasize):
     # scale the test set as well
     X_test = X_test / 255.
     logging.info("loaded mnist data set and splitted to train and test split")
-    save_plot(X_train_full[0],"sample.png")
+    save_plot(X_train_full[0],"dataImg1.png")
+    #save_plot(X_train_full[1],"dataImg2.png")
+    #save_plot(X_train_full[2],"dataImg3.png")
     return (X_train, y_train), (X_valid, y_valid), (X_test, y_test)

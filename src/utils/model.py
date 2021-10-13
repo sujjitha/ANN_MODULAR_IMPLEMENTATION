@@ -34,7 +34,7 @@ def save_model(model, model_name,model_dir):
 
 
 def save_plot(img, plottitle):
-    plot_dir = "plots"
+    plot_dir = "data_plots"
     os.makedirs(plot_dir, exist_ok=True)  # ONLY CREATE IF MODEL_DIR DOES NOT EXISTS
     plotPath = os.path.join(plot_dir, plottitle)  # model/filename
     plt.imshow(img, cmap="binary")
@@ -43,12 +43,23 @@ def save_plot(img, plottitle):
     plt.figure(figsize=(15,15))
     #plt.savefig(plotPath)
     logging.info(f"saving the plot at {plotPath}")
-    sns.heatmap(img/255, annot=True, cmap="binary")
+    sns.heatmap(img, annot=True, cmap="binary")
+    #sns.heatmap(img/255, annot=True, cmap="binary")
     print("plot got called")
     logging.info("image got saved")
     plt.savefig(plotPath)
     plt.show()
 
+def save_model_history(df,filepath, plttitle):
+        os.makedirs(filepath, exist_ok=True)  # ONLY CREATE IF MODEL_DIR DOES NOT EXISTS
+        historyplot_path = os.path.join(filepath, plttitle)  # model/filename
+        logging.info(f"model history plot path:  {historyplot_path}")
+        #logging.info("model history plot path: ",historyplot_path)
+        df.plot(figsize=(10,7))
+        plt.grid(True)
+        plt.savefig(historyplot_path)
+        logging.info("history plot got saved")
+        plt.show()
 
-    
+
 

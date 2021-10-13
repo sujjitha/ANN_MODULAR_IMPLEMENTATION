@@ -1,5 +1,5 @@
 params:
-  epochs: 1
+  epochs: 10
   batch_size: 32
   num_classes: 10
   metrics: accuracy
