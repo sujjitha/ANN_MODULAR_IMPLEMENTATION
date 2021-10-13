@@ -1,6 +1,6 @@
 import os
 from src.utils.data_mgmt import get_data
-from src.utils.model import create_model, save_model
+from src.utils.model import create_model, save_model, save_plot
 import logging
 from src.utils.common import read_config
 import argparse
@@ -39,6 +39,7 @@ def training(config_path):
     os.makedirs(model_dir_path, exist_ok=True)
 
     save_model(model, model_name, model_dir_path)
+    
     
 
 

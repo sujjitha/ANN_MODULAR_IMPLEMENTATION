@@ -1,6 +1,6 @@
 import tensorflow as tf
 import logging
-
+from src.utils.model import save_plot
 
 def get_data(validation_datasize):
     mnist = tf.keras.datasets.mnist
@@ -14,4 +14,5 @@ def get_data(validation_datasize):
     # scale the test set as well
     X_test = X_test / 255.
     logging.info("loaded mnist data set and splitted to train and test split")
+    save_plot(X_train_full[0],"sample.png")
     return (X_train, y_train), (X_valid, y_valid), (X_test, y_test)

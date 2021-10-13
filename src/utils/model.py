@@ -2,6 +2,8 @@ import tensorflow as tf
 import time
 import os
 import logging
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 def create_model(LOSS_FUNCTION,OPTIMIZER,METRICS,NUM_CLASSES):
    
@@ -29,6 +31,24 @@ def save_model(model, model_name,model_dir):
         path_to_model=os.path.join(model_dir,unique_filename)
         logging.info(f"model saved in : {path_to_model} file")
         model.save(path_to_model)
+
+
+def save_plot(img, plottitle):
+    plot_dir = "plots"
+    os.makedirs(plot_dir, exist_ok=True)  # ONLY CREATE IF MODEL_DIR DOES NOT EXISTS
+    plotPath = os.path.join(plot_dir, plottitle)  # model/filename
+    plt.imshow(img, cmap="binary")
+    plt.axis("off")
+    plt.plot()
+    plt.figure(figsize=(15,15))
+    #plt.savefig(plotPath)
+    logging.info(f"saving the plot at {plotPath}")
+    sns.heatmap(img/255, annot=True, cmap="binary")
+    print("plot got called")
+    logging.info("image got saved")
+    plt.savefig(plotPath)
+    plt.show()
+
 
     
 
