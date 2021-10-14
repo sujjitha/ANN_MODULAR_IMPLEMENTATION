@@ -4,6 +4,7 @@ import os
 import logging
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 def create_model(LOSS_FUNCTION,OPTIMIZER,METRICS,NUM_CLASSES):
    
@@ -60,6 +61,19 @@ def save_model_history(df,filepath, plttitle):
         plt.savefig(historyplot_path)
         logging.info("history plot got saved")
         plt.show()
+
+def model_predict(model,x_new, y_test_new):
+        y_prob=model.predict(x_new)
+        
+        y_pred=np.argmax(y_prob, axis=-1)
+        logging.info(f"predicted y value is:  {y_pred}")
+        for img_array, pred, actual in zip(x_new, y_pred, y_test_new):
+                plt.imshow(img_array, cmap="binary")
+                plt.title(f"predicted: {pred}, actual: {actual}")
+                plt.show()
+                print("--*20")
+        logging.info("all the predicted values got printed")
+
 
 
 

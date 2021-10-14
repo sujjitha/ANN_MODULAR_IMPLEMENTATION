@@ -1,6 +1,6 @@
 import os
 from src.utils.data_mgmt import get_data
-from src.utils.model import create_model, save_model, save_model_history
+from src.utils.model import create_model, save_model, save_model_history, model_predict
 import logging
 from src.utils.common import read_config
 import argparse
@@ -32,6 +32,9 @@ def training(config_path):
     logging.info(f"X_train shape: {X_train.shape}")
     logging.info(f"y_train shape: {y_train.shape}")
     history=model.fit(X_train, y_train,epochs=EPOCHS, validation_data=VALIDATION_SET)
+    model.evaluate(X_test, y_test)
+    logging.info("model got evaluated")
+    model_predict(model,X_test[:3],y_test[:3])
 
     model_name=config["artifacts"]["model_name"]
     model_dir=config["artifacts"]["model_dir"]
