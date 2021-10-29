@@ -70,8 +70,9 @@ def model_predict(model,x_new, y_test_new):
         for img_array, pred, actual in zip(x_new, y_pred, y_test_new):
                 plt.imshow(img_array, cmap="binary")
                 plt.title(f"predicted: {pred}, actual: {actual}")
+                #plt.savefig(historyplot_path)
                 plt.show()
-                print("--*20")
+                #print("--"*20)
         logging.info("all the predicted values got printed")
 
 

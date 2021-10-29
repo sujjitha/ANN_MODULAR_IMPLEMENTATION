@@ -5,6 +5,7 @@ import logging
 from src.utils.common import read_config
 import argparse
 import pandas as pd
+from src.utils.callbacks import get_callbacks
 
 def training(config_path):
     config=read_config(config_path)
@@ -31,7 +32,8 @@ def training(config_path):
     logging.info(f"y_valid shape: {y_valid.shape}")
     logging.info(f"X_train shape: {X_train.shape}")
     logging.info(f"y_train shape: {y_train.shape}")
-    history=model.fit(X_train, y_train,epochs=EPOCHS, validation_data=VALIDATION_SET)
+    CALLBACK_LIST=get_callbacks(config, X_train)
+    history=model.fit(X_train, y_train,epochs=EPOCHS, validation_data=VALIDATION_SET, callbacks=CALLBACK_LIST)
     model.evaluate(X_test, y_test)
     logging.info("model got evaluated")
     model_predict(model,X_test[:3],y_test[:3])
